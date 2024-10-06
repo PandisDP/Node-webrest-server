@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { TodosController } from "./controller";
+import { RequestHandler } from 'express';
 
 export class TodoRoutes{
 
@@ -8,8 +9,8 @@ export class TodoRoutes{
         const todosController = new TodosController();
         router.get('/', todosController.getTodos);
         router.get('/:id', todosController.getTodoById);
-        router.post('/', todosController.createTodo);
-        router.put('/:id', todosController.updateTodo);
+        router.post('/', todosController.createTodo as RequestHandler);
+        router.put('/:id', todosController.updateTodo as RequestHandler);
         router.delete('/:id', todosController.deleleTodo);
         return router;
     };
